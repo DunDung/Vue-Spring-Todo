@@ -1,11 +1,13 @@
 package com.todo.dto;
 
 
-public class Item {
+public class ItemDto {
     int id;
     String contents;
 
-
+    public ItemDto(String contents){
+        this.contents = contents;
+    }
     public int getId() {
         return id;
     }
