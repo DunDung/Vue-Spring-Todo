@@ -1,7 +1,6 @@
 <template>
   <div class="inputBox shadow">
-    <input type="text" v-model="newTodoItem" placeholder="Type what you have to do"
-    v-on:keyup.enter="addTodo">
+    <input type="text" v-model="newTodoItem" placeholder="할 일을 입력하세요!" v-on:keyup.enter="addTodo">
     <span class="addContainer" v-on:click="addTodo">
       <i class="addBtn fas fa-plus" aria-hidden="true"></i>
     </span>
@@ -17,11 +16,9 @@ export default {
   },
   methods: {
     addTodo () {
-      var contents = this.newTodoItem && this.newTodoItem.trim()
-      if (contents !== '') {
-        this.$http.get('/todo/addTodo/' + contents).then().catch()
-        this.clearInput()
-      }
+      var value = this.newTodoItem && this.newTodoItem.trim()
+      this.$emit('addTodo', value)
+      this.clearInput()
     },
     clearInput () {
       this.newTodoItem = ''
@@ -39,11 +36,11 @@ input:focus {
   height: 50px;
   line-height: 50px;
   border-radius: 5px;
-
 }
 .inputBox input {
   border-style: none;
   font-size: 1.0rem;
+  text-align: center;
 }
 .addContainer {
   float: right;

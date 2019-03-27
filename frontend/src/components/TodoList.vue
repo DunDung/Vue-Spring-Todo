@@ -1,10 +1,10 @@
 <template>
   <section>
     <ul>
-      <li v-for="todoItem in todoItems" :key="todoItem.id" class="shadow">
+      <li v-for="(todoItem, index) in propsdata" :key="index" class="shadow">
         <i class="checkBtn fas fa-check" aria-hidden="true"></i>
-          {{ todoItem.contents }}
-          <span class="removeBtn" type="button" @click="removeTodo(todoItem.id)">
+          {{ todoItem }}
+          <span class="removeBtn" type="button" @click="removeTodo(index)">
             <i class="far fa-trash-alt" aria-hidden="true"></i>
           </span>
       </li>
@@ -14,20 +14,10 @@
 
 <script>
 export default {
-  data () {
-    return {
-      todoItems: []
-    }
-  },
-  created () {
-    this.$http.get('/todo/list').then((list) => {
-      this.todoItems = list.data
-    })
-  },
+  props: ['propsdata'],
   methods: {
-    removeTodo (id) {
-      this.$http.get('/todo/delete/' + id).then().catch()
-      this.todoItems.splice(id - 1, 1)
+    removeTodo (index) {
+      this.$emit('removeTodo', index)
     }
   }
 }

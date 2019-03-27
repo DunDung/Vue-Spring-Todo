@@ -28,10 +28,23 @@ public class TodoController {
     public List<ItemDto> findAll() {
         return itemService.findAll();
     }
+    @GetMapping("/size")
+    public int size() {
+        return itemService.size();
+    }
+    @GetMapping("/findOne/{id}")
+    public String findOne(@PathVariable int id){
+        return itemService.findOne(id);
+    }
 
     @GetMapping("/delete/{id}")
     public void deleteOne(@PathVariable int id) {
         itemService.deleteOne(id);
+    }
+
+    @GetMapping("/deleteAll")
+    public void deleteAll() {
+        itemService.deleteAll();
     }
 
 

@@ -10,10 +10,23 @@
   <select id="findAll" resultType="itemDto">
     SELECT * FROM Item
   </select>
+  <select id="findOne" resultType="String">
+    SELECT contents FROM Item WHERE id = #{id}
+  </select>
+
+  <select id="size" resultType="int">
+    SELECT COUNT(*) FROM Item
+  </select>
 
   <delete id="deleteOne">
     DELETE FROM Item WHERE id = #{id}
   </delete>
+
+  <delete id="deleteAll">
+    TRUNCATE TABLE Item
+  </delete>
+
+
 
 
 </mapper>

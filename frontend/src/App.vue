@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <TodoHeader></TodoHeader>
-    <TodoInput></TodoInput>
-    <TodoList></TodoList>
-    <TodoFooter></TodoFooter>
+    <TodoInput v-on:addTodo="addTodo"></TodoInput>
+    <TodoList v-bind:propsdata="todoItems" @removeTodo="removeTodo"></TodoList>
+    <TodoFooter v-on:removeAll="clearAll"></TodoFooter>
   </div>
 </template>
 
@@ -13,6 +13,48 @@ import TodoInput from './components/TodoInput'
 import TodoList from './components/TodoList'
 import TodoFooter from './components/TodoFooter'
 export default {
+  data () {
+    return {
+      todoItems: []
+    }
+  },
+  created () {
+    var dbSize
+    this.$http.get('/todo/size').then((size) => {
+      dbSize = size.data
+      for (var i = 1; i <= dbSize; i++) {
+        this.$http.get('/todo/findOne/' + i).then((contents) => {
+          this.todoItems.push(contents.data)
+        })
+      }
+    })
+    // this.$http.get('/todo/list').then((list) => {
+    //   this.todoItems = list.data
+    // })
+  },
+  methods: {
+    addTodo (todoItem) {
+      console.log('addTodo 실행')
+      if (todoItem !== '') {
+        this.$http.get('/todo/addTodo/' + todoItem).then().catch()
+        this.todoItems.push(todoItem)
+      }
+    },
+
+    clearAll () {
+      this.$http.get('todo/deleteAll').then().catch()
+      this.todoItems = []
+    },
+    removeTodo (index) {
+      this.todoItems.splice(index++, 1)
+      this.$http.get('/todo/delete/' + index).then().catch()
+    },
+    reload () {
+      this.$http.get('/todo/list').then((list) => {
+        this.todoItems = list.data
+      })
+    }
+  },
   components: {
     'TodoHeader': TodoHeader,
     'TodoInput': TodoInput,

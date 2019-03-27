@@ -26,4 +26,18 @@ public class ItemDaoImpl implements ItemDao {
     public void deleteOne(int id) {
         itemMapper.deleteOne(id);
     }
+    @Override
+    public void deleteAll() {
+        itemMapper.deleteAll();
+    }
+
+    @Override
+    public String findOne(int id) {
+        return itemMapper.findOne(id);
+    }
+
+    @Override
+    public int size() {
+        return itemMapper.size();
+    }
 }
