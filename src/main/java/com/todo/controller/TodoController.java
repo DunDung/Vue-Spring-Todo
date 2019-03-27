@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/todo")
@@ -18,8 +20,19 @@ public class TodoController {
     ItemService itemService;
 
     @GetMapping("/addTodo/{contents}")
-    public void create(@PathVariable String contents) {
+    public void addTodo(@PathVariable String contents) {
         itemService.insert(new ItemDto(contents));
     }
+
+    @GetMapping("/list")
+    public List<ItemDto> findAll() {
+        return itemService.findAll();
+    }
+
+    @GetMapping("/delete/{id}")
+    public void deleteOne(@PathVariable int id) {
+        itemService.deleteOne(id);
+    }
+
 
 }

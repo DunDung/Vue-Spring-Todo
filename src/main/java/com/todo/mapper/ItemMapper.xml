@@ -7,6 +7,13 @@
     INSERT Item (contents)
     VALUES (#{contents})
   </insert>
+  <select id="findAll" resultType="itemDto">
+    SELECT * FROM Item
+  </select>
+
+  <delete id="deleteOne">
+    DELETE FROM Item WHERE id = #{id}
+  </delete>
 
 
 </mapper>

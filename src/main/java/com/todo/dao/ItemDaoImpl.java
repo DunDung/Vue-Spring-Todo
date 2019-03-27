@@ -5,6 +5,8 @@ import com.todo.mapper.ItemMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class ItemDaoImpl implements ItemDao {
     @Autowired
@@ -13,5 +15,15 @@ public class ItemDaoImpl implements ItemDao {
     @Override
     public void insert(ItemDto itemDto) {
         itemMapper.insert(itemDto);
+    }
+
+    @Override
+    public List<ItemDto> findAll(){
+        return itemMapper.findAll();
+    }
+
+    @Override
+    public void deleteOne(int id) {
+        itemMapper.deleteOne(id);
     }
 }
