@@ -15,7 +15,7 @@ module.exports = {
         target: 'http://localhost:3000/todo',
         changeOrigin: true,
         pathRewrite: {
-          '^/todo':''
+          '^/todo': ''
         }
       }
     },

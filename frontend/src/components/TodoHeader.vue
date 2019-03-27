@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1>Todo + SpringBoot</h1>
+    <h1>TODO it app using Spring And Vue</h1>
   </header>
 </template>
 

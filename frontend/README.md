@@ -1,6 +1,6 @@
 # frontend
 
-> vue + springBoot
+> vue + springboot 
 
 ## Build Setup
 
