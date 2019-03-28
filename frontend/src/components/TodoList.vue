@@ -15,7 +15,7 @@
     </transition-group>
     <!-- 수정 Modal 부분 -->
     <modal v-if="showModal" @close="showModal = false">
-      <h3 slot="header">수정</h3>
+      <h3 slot="header">수 정</h3>
       <span slot="body">
         <div class="inputBox shadow">
           <input type="text" v-model="modifiedItem" placeholder="수정한 내용을 입력하세요!" v-on:keyup.enter="updateTodo">
