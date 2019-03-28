@@ -34,25 +34,17 @@ export default {
   },
   methods: {
     addTodo (todoItem) {
-      console.log('addTodo 실행')
-      if (todoItem !== '') {
-        this.$http.get('/todo/addTodo/' + todoItem).then().catch()
-        this.todoItems.push(todoItem)
-      }
+      this.$http.get('/todo/addTodo/' + todoItem).then().catch()
+      this.todoItems.push(todoItem)
     },
 
     clearAll () {
       this.$http.get('todo/deleteAll').then().catch()
       this.todoItems = []
     },
-    removeTodo (index) {
-      this.todoItems.splice(index++, 1)
-      this.$http.get('/todo/delete/' + index).then().catch()
-    },
-    reload () {
-      this.$http.get('/todo/list').then((list) => {
-        this.todoItems = list.data
-      })
+    removeTodo (todoItem, index) {
+      this.todoItems.splice(index, 1)
+      this.$http.get('/todo/delete/' + todoItem).then().catch()
     }
   },
   components: {

@@ -19,7 +19,7 @@
   </select>
 
   <delete id="deleteOne">
-    DELETE FROM Item WHERE id = #{id}
+    DELETE FROM Item WHERE contents = #{contents}
   </delete>
 
   <delete id="deleteAll">

@@ -23,8 +23,8 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     @Override
-    public void deleteOne(int id) {
-        itemMapper.deleteOne(id);
+    public void deleteOne(String contents) {
+        itemMapper.deleteOne(contents);
     }
     @Override
     public void deleteAll() {

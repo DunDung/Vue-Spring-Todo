@@ -7,7 +7,7 @@ import java.util.List;
 public interface ItemDao {
     void insert(ItemDto itemDto);
     List<ItemDto> findAll();
-    void deleteOne(int id);
+    void deleteOne(String contents);
     void deleteAll();
     String findOne(int id);
     int size();
