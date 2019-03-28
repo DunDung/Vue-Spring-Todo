@@ -1,6 +1,7 @@
 <template>
   <section>
-    <transition-group name="list" tag="ul">
+    <!--리스트 부분 -->
+    <transition-group name="list" tag="ul"> <!--transition-group으로 애니메이션 처리-->
       <li v-for="(todoItem, index) in propsdata" :key="todoItem" class="shadow">
         <i class="checkBtn fas fa-check" aria-hidden="true"></i>
           {{ todoItem }}
@@ -12,18 +13,49 @@
         </span>
       </li>
     </transition-group>
-
+    <!-- 수정 Modal 부분 -->
+    <modal v-if="showModal" @close="showModal = false">
+      <h3 slot="header">수정</h3>
+      <span slot="body">
+        <div class="inputBox shadow">
+          <input type="text" v-model="modifiedItem" placeholder="수정한 내용을 입력하세요!" v-on:keyup.enter="updateTodo">
+          <span class="addContainer" v-on:click="updateTodo">
+            <i class="addBtn fas fa-plus" aria-hidden="true"></i>
+          </span>
+        </div>
+      </span>
+      <span slot="footer" @click="showModal = false">
+        <i class="closeModalBtn fas fa-times" aria-hidden="true"></i>
+      </span>
+    </modal>
   </section>
 </template>
 
 <script>
+import Modal from './common/Modal.vue'
 export default {
   props: ['propsdata'],
+  data () {
+    return {
+      showModal: false,
+      modifiedItem: '',
+      index: 0
+    }
+  },
   methods: {
     removeTodo (todoItem, index) {
       this.$emit('removeTodo', todoItem, index)
+    },
+    modifiedTodo (index) {
+      this.showModal = !this.showModal
+      this.index = index
+    },
+    updateTodo () {
+      this.$emit('updateTodo', this.modifiedItem, this.index)
     }
-    
+  },
+  components: {
+    Modal: Modal
   }
 }
 </script>
@@ -68,5 +100,30 @@ li {
 .modifiedBtn{
   margin-left: 30px;
   color: blue;
+}
+input:focus {
+  outline: none;
+}
+.inputBox {
+  background: white;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 5px;
+}
+.inputBox input {
+  border-style: none;
+  font-size: 1.0rem;
+  text-align: center;
+}
+.addContainer {
+  float: right;
+  background: linear-gradient(to right, #6478FB, #8763FB);
+  display: block;
+  width: 3rem;
+  border-radius: 0 5px 5px 0;
+}
+.addBtn {
+  color: white;
+  vertical-align: middle;
 }
 </style>
