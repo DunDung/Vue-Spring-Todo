@@ -37,9 +37,9 @@ public class TodoController {
         return itemService.findOne(id);
     }
 
-    @GetMapping("/delete/{contents}")
-    public void deleteOne(@PathVariable String contents) {
-        itemService.deleteOne(contents);
+    @GetMapping("/delete/{id}")
+    public void deleteOne(@PathVariable int id) {
+        itemService.deleteOne(id);
     }
 
     @GetMapping("/deleteAll")

@@ -19,8 +19,12 @@
   </select>
 
   <delete id="deleteOne">
-    DELETE FROM Item WHERE contents = #{contents}
+    DELETE FROM Item WHERE id = #{id};
+    set @CNT = 0;
+    update item set item.id = @CNT:=@CNT+1;
+    alter table item AUTO_INCREMENT=1;
   </delete>
+
 
   <delete id="deleteAll">
     TRUNCATE TABLE Item

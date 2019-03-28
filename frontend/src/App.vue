@@ -44,7 +44,7 @@ export default {
     },
     removeTodo (todoItem, index) {
       this.todoItems.splice(index, 1)
-      this.$http.get('/todo/delete/' + todoItem).then().catch()
+      this.$http.get('/todo/delete/' + ++index).then().catch()
     }
   },
   components: {

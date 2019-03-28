@@ -22,8 +22,8 @@ public class ItemServiceImpl implements ItemService {
         return itemDao.findAll();
     }
     @Override
-    public void deleteOne(String contents) {
-        itemDao.deleteOne(contents);
+    public void deleteOne(int id) {
+        itemDao.deleteOne(id);
     }
     @Override
     public void deleteAll() {

@@ -7,9 +7,12 @@
         <span class="removeBtn" type="button" @click="removeTodo(todoItem, index)">
           <i class="far fa-trash-alt" aria-hidden="true"></i>
         </span>
-        
+        <span class="modifiedBtn" type="button" @click="modifiedTodo(index)">
+          <i class="far fa-comment-dots"></i>
+        </span>
       </li>
     </transition-group>
+
   </section>
 </template>
 
@@ -20,6 +23,7 @@ export default {
     removeTodo (todoItem, index) {
       this.$emit('removeTodo', todoItem, index)
     }
+    
   }
 }
 </script>
@@ -61,5 +65,8 @@ li {
   margin-left: auto;
   color: #de4343;
 }
-
+.modifiedBtn{
+  margin-left: 30px;
+  color: blue;
+}
 </style>
