@@ -25,10 +25,16 @@
     alter table item AUTO_INCREMENT=1;
   </delete>
 
-
   <delete id="deleteAll">
     TRUNCATE TABLE Item
   </delete>
+
+  <update id="update">
+    UPDATE Item SET
+      id = #{id},
+      contents = #{contents}
+    WHERE id = #{id}
+  </update>
 
 
 

@@ -19,7 +19,7 @@
       <span slot="body">
         <div class="inputBox shadow">
           <input type="text" v-model="modifiedItem" placeholder="수정한 내용을 입력하세요!" v-on:keyup.enter="updateTodo">
-          <span class="addContainer" v-on:click="updateTodo">
+          <span class="addContainer" @click="updateTodo">
             <i class="addBtn fas fa-plus" aria-hidden="true"></i>
           </span>
         </div>
@@ -52,6 +52,7 @@ export default {
     },
     updateTodo () {
       this.$emit('updateTodo', this.modifiedItem, this.index)
+      this.showModal = false
     }
   },
   components: {

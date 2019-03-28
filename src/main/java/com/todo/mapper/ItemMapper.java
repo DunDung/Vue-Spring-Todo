@@ -14,5 +14,6 @@ public interface ItemMapper {
     void deleteAll();
     String findOne(int id);
     int size();
+    void update(int id, String contents);
 }
 

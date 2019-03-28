@@ -40,4 +40,9 @@ public class ItemDaoImpl implements ItemDao {
     public int size() {
         return itemMapper.size();
     }
+
+    @Override
+    public void update(int id, String contents) {
+       itemMapper.update(id, contents);
+    }
 }

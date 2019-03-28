@@ -23,15 +23,16 @@ public class TodoController {
     public void addTodo(@PathVariable String contents) {
         itemService.insert(new ItemDto(contents));
     }
-
     @GetMapping("/list")
     public List<ItemDto> findAll() {
         return itemService.findAll();
     }
+
     @GetMapping("/size")
     public int size() {
         return itemService.size();
     }
+
     @GetMapping("/findOne/{id}")
     public String findOne(@PathVariable int id){
         return itemService.findOne(id);
@@ -47,5 +48,8 @@ public class TodoController {
         itemService.deleteAll();
     }
 
-
+    @GetMapping("/update/{id}/{contents}")
+    public void update(@PathVariable int id, @PathVariable String contents) {
+        itemService.update(id, contents);
+    }
 }

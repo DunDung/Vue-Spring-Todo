@@ -37,4 +37,8 @@ public class ItemServiceImpl implements ItemService {
     public int size() {
         return itemDao.size();
     }
+    @Override
+    public void update(int id, String contents) {
+        itemDao.update(id, contents);
+    }
 }
