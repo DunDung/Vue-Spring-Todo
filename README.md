@@ -6,4 +6,4 @@
 
 ## 실행 방법  
 * fronted 폴더 위치에서 명령 프롬프트 창을 열고 npm start  
-* Spring-oot:run
+* Spring-boot:run
